@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:animated_button/animated_button.dart';
 
 void main() {
   runApp(const MyApp());
@@ -86,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Padding(
         padding: EdgeInsetsDirectional.fromSTEB(610, 70, 50, 30),
         child: Container(
-          width: 405,
+          width: 380,
           height: 80,
           color: Colors.grey,
           child: Align(
@@ -121,56 +122,33 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget test3(String idx) {
     // Figma Flutter Generator NumberbuttonWidget - INSTANCE
     return InkWell(
-        onTap: () => {_addNumber(idx)},
-        onHover: (hovering) {
-          setState(() {
-            isHovering = hovering;
-          });
-        },
-        child: // Figma Flutter Generator NumberbuttonWidget - COMPONENT
+      onTap: () => {_addNumber(idx)},
+      onHover: (hovering) {
+        setState(() {
+          isHovering = hovering;
+        });
+      },
+      child: // Figma Flutter Generator NumberbuttonWidget - COMPONENT
 
-            Ink(
-                child: Container(
-                    width: 128,
-                    height: 128,
-                    child: Stack(children: <Widget>[
-                      Positioned(
-                          top: 0,
-                          left: 0,
-                          child: Container(
-                              width: 128,
-                              height: 128,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(5),
-                                  topRight: Radius.circular(5),
-                                  bottomLeft: Radius.circular(5),
-                                  bottomRight: Radius.circular(5),
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Color.fromRGBO(
-                                          0, 0, 0, 0.15000000596046448),
-                                      offset: Offset(0, 4),
-                                      blurRadius: 4)
-                                ],
-                                color: Color.fromRGBO(
-                                    0, 0, 0, 0.15000000596046448),
-                              ))),
-                      Center(
-                          child: Text(
-                        idx,
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            color: Color.fromRGBO(0, 0, 0, 1),
-                            fontFamily: 'Roboto Condensed',
-                            fontSize: 60,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing:
-                                0 /*percentages not used in flutter. defaulting to zero*/,
-                            height: 1),
-                      )),
-                    ]))));
+          AnimatedButton(
+        width: 120,
+        height: 120,
+        duration: 10,
+        shadowDegree: ShadowDegree.dark,
+        color: Colors.blueGrey,
+        child: Text(
+          idx,
+          style: TextStyle(
+            fontSize: 32,
+            color: Colors.white,
+            fontWeight: FontWeight.w800,
+          ),
+        ),
+        onPressed: () {
+          _addNumber(idx);
+        },
+      ),
+    );
   }
 
   Widget deleteButton() {
@@ -185,39 +163,17 @@ class _MyHomePageState extends State<MyHomePage> {
         child: // Figma Flutter Generator NumberbuttonWidget - COMPONENT
 
             Ink(
-                child: Container(
-                    width: 128,
-                    height: 128,
-                    child: Stack(children: <Widget>[
-                      Positioned(
-                          top: 0,
-                          left: 0,
-                          child: Container(
-                              width: 128,
-                              height: 128,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(5),
-                                  topRight: Radius.circular(5),
-                                  bottomLeft: Radius.circular(5),
-                                  bottomRight: Radius.circular(5),
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Color.fromRGBO(
-                                          0, 0, 0, 0.15000000596046448),
-                                      offset: Offset(0, 4),
-                                      blurRadius: 4)
-                                ],
-                                color: Color.fromRGBO(
-                                    0, 0, 0, 0.15000000596046448),
-                              ))),
-                      Center(
-                          child: Icon(
-                        Icons.backspace,
-                        size: 30,
-                      )),
-                    ]))));
+                child: AnimatedButton(
+          width: 120,
+          height: 120,
+          duration: 10,
+          shadowDegree: ShadowDegree.dark,
+          color: Colors.blueGrey,
+          child: Icon(Icons.backspace, size: 30, color: Colors.white),
+          onPressed: () {
+            _deleteNumber();
+          },
+        )));
   }
 
   @override

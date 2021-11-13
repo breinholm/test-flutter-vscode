@@ -167,57 +167,58 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+        backgroundColor: Colors.grey[800],
         body: Stack(children: <Widget>[
-      textContainer(),
-      Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(600, 150, 50, 30),
-        child: Column(
-            // Center is a layout widget. It takes a single child and positions it
-            // in the middle of the parent.
-            children: <Widget>[
-              SizedBox(
-                height: space,
-              ),
-              Row(children: <Widget>[
-                SizedBox(width: space),
-                test3("1"),
-                SizedBox(width: space),
-                test3("2"),
-                SizedBox(width: space),
-                test3("3"),
-              ]),
-              SizedBox(
-                height: space,
-              ),
-              Row(children: <Widget>[
-                SizedBox(width: space),
-                test3("4"),
-                SizedBox(width: space),
-                test3("5"),
-                SizedBox(width: space),
-                test3("6"),
-              ]),
-              SizedBox(
-                height: space,
-              ),
-              Align(
-                alignment: Alignment.topRight,
-                child: Row(children: <Widget>[
-                  SizedBox(width: space),
-                  test3("7"),
-                  SizedBox(width: space),
-                  test3("8"),
-                  SizedBox(width: space),
-                  test3("9"),
-                  SizedBox(width: space),
-                  deleteButton(),
+          textContainer(),
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(600, 150, 50, 30),
+            child: Column(
+                // Center is a layout widget. It takes a single child and positions it
+                // in the middle of the parent.
+                children: <Widget>[
+                  SizedBox(
+                    height: space,
+                  ),
+                  Row(children: <Widget>[
+                    SizedBox(width: space),
+                    test3("1"),
+                    SizedBox(width: space),
+                    test3("2"),
+                    SizedBox(width: space),
+                    test3("3"),
+                  ]),
+                  SizedBox(
+                    height: space,
+                  ),
+                  Row(children: <Widget>[
+                    SizedBox(width: space),
+                    test3("4"),
+                    SizedBox(width: space),
+                    test3("5"),
+                    SizedBox(width: space),
+                    test3("6"),
+                  ]),
+                  SizedBox(
+                    height: space,
+                  ),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Row(children: <Widget>[
+                      SizedBox(width: space),
+                      test3("7"),
+                      SizedBox(width: space),
+                      test3("8"),
+                      SizedBox(width: space),
+                      test3("9"),
+                      SizedBox(width: space),
+                      deleteButton(),
+                    ]),
+                  ),
+                  SizedBox(
+                    height: space,
+                  ),
                 ]),
-              ),
-              SizedBox(
-                height: space,
-              ),
-            ]),
-      )
-    ]));
+          ),
+        ]));
   }
 }

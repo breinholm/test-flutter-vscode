@@ -48,21 +48,182 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int _counter = 4;
+  String volume = "0";
 
-  void _incrementCounter() {
+  bool isHovering = false;
+  bool pressed = true;
+  bool wtf = false;
+  void _addNumber(String number) {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      if (volume.length <= 3) {
+        // This call to setState tells the Flutter framework that something has
+        // changed in this State, which causes it to rerun the build method below
+        // so that the display can reflect the updated values. If we changed
+        // _counter without calling setState(), then the build method would not be
+        // called again, and so nothing would appear to happen.
+        volume += number;
+      }
     });
+  }
+
+  void _deleteNumber() {
+    setState(() {
+      if (volume.length > 1) {
+        // This call to setState tells the Flutter framework that something has
+        // changed in this State, which causes it to rerun the build method below
+        // so that the display can reflect the updated values. If we changed
+        // _counter without calling setState(), then the build method would not be
+        // called again, and so nothing would appear to happen.
+        volume = volume.substring(0, volume.length - 1);
+      } else {
+        volume = "";
+      }
+    });
+  }
+
+  Widget textContainer() {
+    return Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(610, 70, 50, 30),
+        child: Container(
+          width: 405,
+          height: 80,
+          color: Colors.grey,
+          child: Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                  child: Text(
+                      volume.length > 1
+                          ? volume.substring(0, volume.length - 1) +
+                              "." +
+                              volume.substring(volume.length - 1, volume.length)
+                          : volume.length > 0
+                              ? "0." + volume
+                              : "0.0",
+                      style: TextStyle(fontSize: 40)))),
+        ));
+  }
+
+  Widget test(String idx) {
+    return // Figma Flutter Generator Rectangle1Widget - RECTANGLE
+        // Figma Flutter Generator Group1Widget - GROUP
+        // Figma Flutter Generator Group1Widget - GROUP
+        FloatingActionButton.extended(
+      onPressed: () {
+        // Add your onPressed code here!
+      },
+      label: new Text(idx, style: TextStyle(color: Colors.white)),
+      backgroundColor: Colors.black,
+    );
+  }
+
+  Widget test3(String idx) {
+    // Figma Flutter Generator NumberbuttonWidget - INSTANCE
+    return InkWell(
+        onTap: () => {_addNumber(idx)},
+        onHover: (hovering) {
+          setState(() {
+            isHovering = hovering;
+          });
+        },
+        child: // Figma Flutter Generator NumberbuttonWidget - COMPONENT
+
+            Ink(
+                child: Container(
+                    width: 128,
+                    height: 128,
+                    child: Stack(children: <Widget>[
+                      Positioned(
+                          top: 0,
+                          left: 0,
+                          child: Container(
+                              width: 128,
+                              height: 128,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(5),
+                                  topRight: Radius.circular(5),
+                                  bottomLeft: Radius.circular(5),
+                                  bottomRight: Radius.circular(5),
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Color.fromRGBO(
+                                          0, 0, 0, 0.15000000596046448),
+                                      offset: Offset(0, 4),
+                                      blurRadius: 4)
+                                ],
+                                color: Color.fromRGBO(
+                                    0, 0, 0, 0.15000000596046448),
+                              ))),
+                      Center(
+                          child: Text(
+                        idx,
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            color: Color.fromRGBO(0, 0, 0, 1),
+                            fontFamily: 'Roboto Condensed',
+                            fontSize: 60,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing:
+                                0 /*percentages not used in flutter. defaulting to zero*/,
+                            height: 1),
+                      )),
+                    ]))));
+  }
+
+  Widget deleteButton() {
+    // Figma Flutter Generator NumberbuttonWidget - INSTANCE
+    return InkWell(
+        onTap: () => {_deleteNumber()},
+        onHover: (hovering) {
+          setState(() {
+            isHovering = hovering;
+          });
+        },
+        child: // Figma Flutter Generator NumberbuttonWidget - COMPONENT
+
+            Ink(
+                child: Container(
+                    width: 128,
+                    height: 128,
+                    child: Stack(children: <Widget>[
+                      Positioned(
+                          top: 0,
+                          left: 0,
+                          child: Container(
+                              width: 128,
+                              height: 128,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(5),
+                                  topRight: Radius.circular(5),
+                                  bottomLeft: Radius.circular(5),
+                                  bottomRight: Radius.circular(5),
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Color.fromRGBO(
+                                          0, 0, 0, 0.15000000596046448),
+                                      offset: Offset(0, 4),
+                                      blurRadius: 4)
+                                ],
+                                color: Color.fromRGBO(
+                                    0, 0, 0, 0.15000000596046448),
+                              ))),
+                      Center(
+                          child: Icon(
+                        Icons.backspace,
+                        size: 30,
+                      )),
+                    ]))));
   }
 
   @override
   Widget build(BuildContext context) {
+    double space = 10;
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -70,46 +231,57 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+        body: Stack(children: <Widget>[
+      textContainer(),
+      Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(600, 150, 50, 30),
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+            // Center is a layout widget. It takes a single child and positions it
+            // in the middle of the parent.
+            children: <Widget>[
+              SizedBox(
+                height: space,
+              ),
+              Row(children: <Widget>[
+                SizedBox(width: space),
+                test3("1"),
+                SizedBox(width: space),
+                test3("2"),
+                SizedBox(width: space),
+                test3("3"),
+              ]),
+              SizedBox(
+                height: space,
+              ),
+              Row(children: <Widget>[
+                SizedBox(width: space),
+                test3("4"),
+                SizedBox(width: space),
+                test3("5"),
+                SizedBox(width: space),
+                test3("6"),
+              ]),
+              SizedBox(
+                height: space,
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child: Row(children: <Widget>[
+                  SizedBox(width: space),
+                  test3("7"),
+                  SizedBox(width: space),
+                  test3("8"),
+                  SizedBox(width: space),
+                  test3("9"),
+                  SizedBox(width: space),
+                  deleteButton(),
+                ]),
+              ),
+              SizedBox(
+                height: space,
+              ),
+            ]),
+      )
+    ]));
   }
 }

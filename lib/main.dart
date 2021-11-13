@@ -121,59 +121,39 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget test3(String idx) {
     // Figma Flutter Generator NumberbuttonWidget - INSTANCE
-    return InkWell(
-      onTap: () => {_addNumber(idx)},
-      onHover: (hovering) {
-        setState(() {
-          isHovering = hovering;
-        });
-      },
-      child: // Figma Flutter Generator NumberbuttonWidget - COMPONENT
-
-          AnimatedButton(
-        width: 120,
-        height: 120,
-        duration: 10,
-        shadowDegree: ShadowDegree.dark,
-        color: Colors.blueGrey,
-        child: Text(
-          idx,
-          style: TextStyle(
-            fontSize: 32,
-            color: Colors.white,
-            fontWeight: FontWeight.w800,
-          ),
+    return AnimatedButton(
+      width: 120,
+      height: 120,
+      duration: 10,
+      shadowDegree: ShadowDegree.dark,
+      color: Colors.blueGrey,
+      child: Text(
+        idx,
+        style: TextStyle(
+          fontSize: 32,
+          color: Colors.white,
+          fontWeight: FontWeight.w800,
         ),
-        onPressed: () {
-          _addNumber(idx);
-        },
       ),
+      onPressed: () {
+        _addNumber(idx);
+      },
     );
   }
 
   Widget deleteButton() {
     // Figma Flutter Generator NumberbuttonWidget - INSTANCE
-    return InkWell(
-        onTap: () => {_deleteNumber()},
-        onHover: (hovering) {
-          setState(() {
-            isHovering = hovering;
-          });
-        },
-        child: // Figma Flutter Generator NumberbuttonWidget - COMPONENT
-
-            Ink(
-                child: AnimatedButton(
-          width: 120,
-          height: 120,
-          duration: 10,
-          shadowDegree: ShadowDegree.dark,
-          color: Colors.blueGrey,
-          child: Icon(Icons.backspace, size: 30, color: Colors.white),
-          onPressed: () {
-            _deleteNumber();
-          },
-        )));
+    return AnimatedButton(
+      width: 120,
+      height: 120,
+      duration: 10,
+      shadowDegree: ShadowDegree.dark,
+      color: Colors.blueGrey,
+      child: Icon(Icons.backspace, size: 30, color: Colors.white),
+      onPressed: () {
+        _deleteNumber();
+      },
+    );
   }
 
   @override

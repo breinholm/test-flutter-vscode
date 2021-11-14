@@ -161,7 +161,7 @@ class _MyHomePageState extends State<MyHomePage> {
       duration: 10,
       shadowDegree: ShadowDegree.dark,
       color: Colors.blueGrey,
-      child: const Icon(Icons.arrow_right, size: 40, color: Colors.green),
+      child: const Icon(Icons.arrow_right, size: 100, color: Colors.green),
       onPressed: () {},
     );
   }
@@ -173,7 +173,19 @@ class _MyHomePageState extends State<MyHomePage> {
       duration: 10,
       shadowDegree: ShadowDegree.dark,
       color: Colors.blueGrey,
-      child: const Icon(Icons.stop, size: 40, color: Colors.red),
+      child: const Icon(Icons.stop, size: 50, color: Colors.red),
+      onPressed: () {},
+    );
+  }
+
+  Widget pauseButton() {
+    return AnimatedButton(
+      width: 120,
+      height: 120,
+      duration: 10,
+      shadowDegree: ShadowDegree.dark,
+      color: Colors.blueGrey,
+      child: const Icon(Icons.pause, size: 50, color: Colors.white),
       onPressed: () {},
     );
   }
@@ -198,6 +210,18 @@ class _MyHomePageState extends State<MyHomePage> {
       shadowDegree: ShadowDegree.dark,
       color: Colors.blueGrey,
       child: Image.asset('images/Amount_65.png'),
+      onPressed: () {},
+    );
+  }
+
+  Widget tapButton() {
+    return AnimatedButton(
+      width: 120,
+      height: 120,
+      duration: 10,
+      shadowDegree: ShadowDegree.dark,
+      color: Colors.blueGrey,
+      child: Image.asset('images/tap.png'),
       onPressed: () {},
     );
   }
@@ -264,6 +288,16 @@ class _MyHomePageState extends State<MyHomePage> {
               SizedBox(
                 height: space,
               ),
+              Row(children: <Widget>[
+                SizedBox(width: space),
+                startButton(),
+                SizedBox(width: space),
+                pauseButton(),
+                SizedBox(width: space),
+                stopButton(),
+                SizedBox(width: space),
+                tapButton(),
+              ]),
             ]),
           ),
         ]));

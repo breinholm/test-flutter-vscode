@@ -154,6 +154,30 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  Widget startButton() {
+    return AnimatedButton(
+      width: 120,
+      height: 120,
+      duration: 10,
+      shadowDegree: ShadowDegree.dark,
+      color: Colors.blueGrey,
+      child: const Icon(Icons.arrow_right, size: 40, color: Colors.green),
+      onPressed: () {},
+    );
+  }
+
+  Widget stopButton() {
+    return AnimatedButton(
+      width: 120,
+      height: 120,
+      duration: 10,
+      shadowDegree: ShadowDegree.dark,
+      color: Colors.blueGrey,
+      child: const Icon(Icons.stop, size: 40, color: Colors.red),
+      onPressed: () {},
+    );
+  }
+
   Widget quantumButton() {
     return AnimatedButton(
       width: 120,

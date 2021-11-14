@@ -49,9 +49,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 4;
   String volume = "";
-
   bool isHovering = false;
   bool pressed = true;
   bool wtf = false;
@@ -85,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget textContainer() {
     return Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(610, 70, 50, 30),
+        padding: const EdgeInsetsDirectional.fromSTEB(610, 70, 50, 30),
         child: Container(
           width: 380,
           height: 80,
@@ -93,19 +91,20 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Align(
               alignment: Alignment.centerRight,
               child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
                   child: Text(
                       volume.length > 1
                           ? volume.substring(0, volume.length - 1) +
                               "." +
                               volume.substring(volume.length - 1, volume.length)
-                          : volume.length > 0
+                          : volume.isNotEmpty
                               ? "0." + volume
                               : "0.0",
-                      style: TextStyle(fontSize: 40)))),
+                      style: const TextStyle(fontSize: 40)))),
         ));
   }
 
+/*
   Widget test(String idx) {
     return // Figma Flutter Generator Rectangle1Widget - RECTANGLE
         // Figma Flutter Generator Group1Widget - GROUP
@@ -114,13 +113,13 @@ class _MyHomePageState extends State<MyHomePage> {
       onPressed: () {
         // Add your onPressed code here!
       },
-      label: new Text(idx, style: TextStyle(color: Colors.white)),
+      label: Text(idx, style: const TextStyle(color: Colors.white)),
       backgroundColor: Colors.black,
     );
   }
+*/
 
   Widget test3(String idx) {
-    // Figma Flutter Generator NumberbuttonWidget - INSTANCE
     return AnimatedButton(
       width: 120,
       height: 120,
@@ -129,8 +128,8 @@ class _MyHomePageState extends State<MyHomePage> {
       color: Colors.blueGrey,
       child: Text(
         idx,
-        style: TextStyle(
-          fontSize: 32,
+        style: const TextStyle(
+          fontSize: 40,
           color: Colors.white,
           fontWeight: FontWeight.w800,
         ),
@@ -142,23 +141,46 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget deleteButton() {
-    // Figma Flutter Generator NumberbuttonWidget - INSTANCE
     return AnimatedButton(
       width: 120,
       height: 120,
       duration: 10,
       shadowDegree: ShadowDegree.dark,
       color: Colors.blueGrey,
-      child: Icon(Icons.backspace, size: 30, color: Colors.white),
+      child: const Icon(Icons.backspace, size: 40, color: Colors.white),
       onPressed: () {
         _deleteNumber();
       },
     );
   }
 
+  Widget quantumButton() {
+    return AnimatedButton(
+      width: 120,
+      height: 120,
+      duration: 10,
+      shadowDegree: ShadowDegree.dark,
+      color: Colors.blueGrey,
+      child: Image.asset('images/Temp_65.png'),
+      onPressed: () {},
+    );
+  }
+
+  Widget temperatureButton() {
+    return AnimatedButton(
+      width: 120,
+      height: 120,
+      duration: 10,
+      shadowDegree: ShadowDegree.dark,
+      color: Colors.blueGrey,
+      child: Image.asset('images/Amount_65.png'),
+      onPressed: () {},
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    double space = 10;
+    double space = 8;
 
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
@@ -171,53 +193,54 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Stack(children: <Widget>[
           textContainer(),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(600, 150, 50, 30),
-            child: Column(
-                // Center is a layout widget. It takes a single child and positions it
-                // in the middle of the parent.
-                children: <Widget>[
-                  SizedBox(
-                    height: space,
-                  ),
-                  Row(children: <Widget>[
-                    SizedBox(width: space),
-                    test3("1"),
-                    SizedBox(width: space),
-                    test3("2"),
-                    SizedBox(width: space),
-                    test3("3"),
-                  ]),
-                  SizedBox(
-                    height: space,
-                  ),
-                  Row(children: <Widget>[
-                    SizedBox(width: space),
-                    test3("4"),
-                    SizedBox(width: space),
-                    test3("5"),
-                    SizedBox(width: space),
-                    test3("6"),
-                  ]),
-                  SizedBox(
-                    height: space,
-                  ),
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Row(children: <Widget>[
-                      SizedBox(width: space),
-                      test3("7"),
-                      SizedBox(width: space),
-                      test3("8"),
-                      SizedBox(width: space),
-                      test3("9"),
-                      SizedBox(width: space),
-                      deleteButton(),
-                    ]),
-                  ),
-                  SizedBox(
-                    height: space,
-                  ),
+            padding: const EdgeInsetsDirectional.fromSTEB(600, 150, 50, 30),
+            child: Column(children: <Widget>[
+              SizedBox(
+                height: space,
+              ),
+              Row(children: <Widget>[
+                SizedBox(width: space),
+                test3("1"),
+                SizedBox(width: space),
+                test3("2"),
+                SizedBox(width: space),
+                test3("3"),
+                SizedBox(width: space),
+                temperatureButton(),
+              ]),
+              SizedBox(
+                height: space,
+              ),
+              Row(children: <Widget>[
+                SizedBox(width: space),
+                test3("4"),
+                SizedBox(width: space),
+                test3("5"),
+                SizedBox(width: space),
+                test3("6"),
+                SizedBox(width: space),
+                quantumButton(),
+              ]),
+              SizedBox(
+                height: space,
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child: Row(children: <Widget>[
+                  SizedBox(width: space),
+                  test3("7"),
+                  SizedBox(width: space),
+                  test3("8"),
+                  SizedBox(width: space),
+                  test3("9"),
+                  SizedBox(width: space),
+                  deleteButton(),
                 ]),
+              ),
+              SizedBox(
+                height: space,
+              ),
+            ]),
           ),
         ]));
   }

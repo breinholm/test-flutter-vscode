@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:animated_button/animated_button.dart';
+import 'package:flutter_svg/parser.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
   runApp(const MyApp());
@@ -83,25 +86,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget textContainer() {
     return Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(610, 70, 50, 30),
+        padding: const EdgeInsetsDirectional.fromSTEB(630, 70, 50, 30),
         child: Container(
-          width: 380,
-          height: 80,
-          color: Colors.grey,
-          child: Align(
-              alignment: Alignment.centerRight,
-              child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                  child: Text(
-                      volume.length > 1
-                          ? volume.substring(0, volume.length - 1) +
-                              "." +
-                              volume.substring(volume.length - 1, volume.length)
-                          : volume.isNotEmpty
-                              ? "0." + volume
-                              : "0.0",
-                      style: const TextStyle(fontSize: 40)))),
-        ));
+            width: 373,
+            height: 80,
+            color: Colors.black,
+            alignment: Alignment.bottomRight,
+            child: Text(
+              volume.length > 1
+                  ? volume.substring(0, volume.length - 1) +
+                      "." +
+                      volume.substring(volume.length - 1, volume.length)
+                  : volume.isNotEmpty
+                      ? "0." + volume
+                      : "0.0",
+              style: GoogleFonts.andika(
+                  textStyle: TextStyle(fontSize: 40, color: Colors.white)),
+            )));
   }
 
 /*
@@ -119,20 +120,20 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 */
 
-  Widget test3(String idx) {
+  Widget numberButton(String idx) {
     return AnimatedButton(
-      width: 120,
-      height: 120,
+      width: 90,
+      height: 90,
       duration: 10,
-      shadowDegree: ShadowDegree.dark,
-      color: Colors.blueGrey,
+      shadowDegree: ShadowDegree.light,
+      color: const Color.fromRGBO(49, 49, 49, 2),
       child: Text(
         idx,
-        style: const TextStyle(
+        style: GoogleFonts.andika(
+            textStyle: const TextStyle(
           fontSize: 40,
           color: Colors.white,
-          fontWeight: FontWeight.w800,
-        ),
+        )),
       ),
       onPressed: () {
         _addNumber(idx);
@@ -142,11 +143,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget deleteButton() {
     return AnimatedButton(
-      width: 120,
-      height: 120,
+      width: 192,
+      height: 90,
       duration: 10,
       shadowDegree: ShadowDegree.dark,
-      color: Colors.blueGrey,
+      color: const Color.fromRGBO(49, 49, 49, 2),
       child: const Icon(Icons.backspace, size: 40, color: Colors.white),
       onPressed: () {
         _deleteNumber();
@@ -156,23 +157,24 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget startButton() {
     return AnimatedButton(
-      width: 120,
-      height: 120,
+      width: 90,
+      height: 90,
       duration: 10,
       shadowDegree: ShadowDegree.dark,
-      color: Colors.blueGrey,
-      child: const Icon(Icons.arrow_right, size: 100, color: Colors.green),
+      color: const Color.fromRGBO(49, 49, 49, 2),
+      child: Center(
+          child: const Icon(Icons.arrow_right, size: 80, color: Colors.green)),
       onPressed: () {},
     );
   }
 
   Widget stopButton() {
     return AnimatedButton(
-      width: 120,
-      height: 120,
+      width: 90,
+      height: 90,
       duration: 10,
       shadowDegree: ShadowDegree.dark,
-      color: Colors.blueGrey,
+      color: const Color.fromRGBO(49, 49, 49, 2),
       child: const Icon(Icons.stop, size: 50, color: Colors.red),
       onPressed: () {},
     );
@@ -180,11 +182,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget pauseButton() {
     return AnimatedButton(
-      width: 120,
-      height: 120,
+      width: 90,
+      height: 90,
       duration: 10,
       shadowDegree: ShadowDegree.dark,
-      color: Colors.blueGrey,
+      color: const Color.fromRGBO(49, 49, 49, 2),
       child: const Icon(Icons.pause, size: 50, color: Colors.white),
       onPressed: () {},
     );
@@ -192,43 +194,53 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget quantumButton() {
     return AnimatedButton(
-      width: 120,
-      height: 120,
+      width: 90,
+      height: 90,
       duration: 10,
       shadowDegree: ShadowDegree.dark,
-      color: Colors.blueGrey,
-      child: Image.asset('images/Temp_65.png'),
+      color: const Color.fromRGBO(49, 49, 49, 2),
+      child: SvgPicture.asset("images/vandkandenice-02.svg",
+          width: 120, height: 120),
       onPressed: () {},
     );
   }
 
   Widget temperatureButton() {
     return AnimatedButton(
-      width: 120,
-      height: 120,
+      width: 90,
+      height: 90,
       duration: 10,
       shadowDegree: ShadowDegree.dark,
-      color: Colors.blueGrey,
-      child: Image.asset('images/Amount_65.png'),
+      color: const Color.fromRGBO(49, 49, 49, 2),
+      child: SvgPicture.asset('images/termometernice-03.svg',
+          width: 50, height: 50),
       onPressed: () {},
     );
   }
 
   Widget tapButton() {
     return AnimatedButton(
-      width: 120,
-      height: 120,
+      width: 90,
+      height: 90,
       duration: 10,
       shadowDegree: ShadowDegree.dark,
-      color: Colors.blueGrey,
-      child: Image.asset('images/tap.png'),
+      color: const Color.fromRGBO(49, 49, 49, 2),
+      child: Stack(children: <Widget>[
+        Padding(
+            padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+            child: SvgPicture.asset("images/vandhane3.svg",
+                width: 42, height: 39)),
+        Padding(
+            padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
+            child: const Text("Manuel", style: TextStyle(color: Colors.white)))
+      ]),
       onPressed: () {},
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    double space = 8;
+    double space = 12;
 
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
@@ -237,52 +249,47 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-        backgroundColor: Colors.grey[800],
+        backgroundColor: const Color.fromARGB(9, 9, 9, 1),
         body: Stack(children: <Widget>[
           textContainer(),
+          Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(615, 150, 50, 30),
+              child: Container(
+                height: 3,
+                width: 390,
+                color: Color.fromRGBO(49, 49, 49, 2),
+              )),
           Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(600, 150, 50, 30),
             child: Column(children: <Widget>[
               SizedBox(
                 height: space,
               ),
-              Row(children: <Widget>[
-                SizedBox(width: space),
-                test3("1"),
-                SizedBox(width: space),
-                test3("2"),
-                SizedBox(width: space),
-                test3("3"),
-                SizedBox(width: space),
-                temperatureButton(),
+              createRowKeyBoardRow([
+                numberButton("1"),
+                numberButton("2"),
+                numberButton("3"),
+                temperatureButton()
               ]),
               SizedBox(
                 height: space,
               ),
-              Row(children: <Widget>[
-                SizedBox(width: space),
-                test3("4"),
-                SizedBox(width: space),
-                test3("5"),
-                SizedBox(width: space),
-                test3("6"),
-                SizedBox(width: space),
-                quantumButton(),
+              createRowKeyBoardRow([
+                numberButton("4"),
+                numberButton("5"),
+                numberButton("6"),
+                quantumButton()
               ]),
               SizedBox(
                 height: space,
               ),
               Align(
                 alignment: Alignment.topRight,
-                child: Row(children: <Widget>[
-                  SizedBox(width: space),
-                  test3("7"),
-                  SizedBox(width: space),
-                  test3("8"),
-                  SizedBox(width: space),
-                  test3("9"),
-                  SizedBox(width: space),
-                  startButton(),
+                child: createRowKeyBoardRow([
+                  numberButton("7"),
+                  numberButton("8"),
+                  numberButton("9"),
+                  startButton()
                 ]),
               ),
               SizedBox(
@@ -292,14 +299,29 @@ class _MyHomePageState extends State<MyHomePage> {
                 SizedBox(width: space),
                 deleteButton(),
                 SizedBox(width: space),
-                test3("0"),
-                SizedBox(width: space),
-                tapButton(),
+                numberButton("0"),
                 SizedBox(width: space),
                 stopButton(), //pauseButton(),
               ]),
+              SizedBox(
+                height: space * 5,
+              ),
+              Row(children: <Widget>[
+                SizedBox(width: space),
+                tapButton(),
+              ])
             ]),
           ),
         ]));
+  }
+
+  Row createRowKeyBoardRow(List<Widget> keys) {
+    double space = 12;
+    List<Widget> result = [];
+    for (var element in keys) {
+      result.add(SizedBox(width: space));
+      result.add(element);
+    }
+    return Row(children: result);
   }
 }

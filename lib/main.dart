@@ -8,6 +8,8 @@ void main() {
   runApp(const MyApp());
 }
 
+enum entryType { temperature, volume }
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -52,36 +54,126 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String volume = "";
+  String quantityEntry = "";
+  entryType type = entryType.volume;
+  String volumeVal = "";
+  String tempVal = "";
   bool isHovering = false;
   bool pressed = true;
   bool wtf = false;
   void _addNumber(String number) {
     setState(() {
-      if (volume.length <= 3) {
-        // This call to setState tells the Flutter framework that something has
-        // changed in this State, which causes it to rerun the build method below
-        // so that the display can reflect the updated values. If we changed
-        // _counter without calling setState(), then the build method would not be
-        // called again, and so nothing would appear to happen.
-        volume += number;
+      if (quantityEntry.length <= 3 &&
+          !(quantityEntry.isEmpty && number == '0')) {
+        quantityEntry += number;
+        if (type == entryType.temperature) {
+          tempVal = quantityEntry;
+        } else {
+          volumeVal = quantityEntry;
+        }
       }
     });
   }
 
   void _deleteNumber() {
     setState(() {
-      if (volume.length > 1) {
-        // This call to setState tells the Flutter framework that something has
-        // changed in this State, which causes it to rerun the build method below
-        // so that the display can reflect the updated values. If we changed
-        // _counter without calling setState(), then the build method would not be
-        // called again, and so nothing would appear to happen.
-        volume = volume.substring(0, volume.length - 1);
+      if (quantityEntry.length > 1) {
+        quantityEntry = quantityEntry.substring(0, quantityEntry.length - 1);
       } else {
-        volume = "";
+        quantityEntry = "";
+      }
+      if (type == entryType.temperature) {
+        tempVal = quantityEntry;
+      } else {
+        volumeVal = quantityEntry;
       }
     });
+  }
+
+  void setNumber(String number) {
+    setState(() {
+      quantityEntry = number;
+    });
+  }
+
+  Widget entryIcon() {
+    return type == entryType.temperature
+        ? Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(600, 90, 50, 30),
+            child: SvgPicture.asset('images/termometernice-03.svg',
+                width: 60, height: 60))
+        : Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(600, 70, 50, 30),
+            child: SvgPicture.asset("images/vandkandenice-02.svg",
+                width: 100, height: 100));
+  }
+
+  Widget temperatureText() {
+    return Padding(
+        padding: const EdgeInsetsDirectional.fromSTEB(230, 70, 50, 30),
+        child: Container(
+            width: 300,
+            height: 80,
+            color: Colors.black,
+            alignment: Alignment.bottomRight,
+            child: RichText(
+                text: TextSpan(
+              text: 'Temperature: ',
+              style: TextStyle(fontSize: 20, color: Colors.white),
+              children: <TextSpan>[
+                TextSpan(
+                    text: tempVal.length > 1
+                        ? tempVal.substring(0, tempVal.length - 1) +
+                            "." +
+                            tempVal.substring(
+                                tempVal.length - 1, tempVal.length)
+                        : tempVal.isNotEmpty
+                            ? "0." + tempVal
+                            : "0.0",
+                    style: GoogleFonts.andika(
+                        textStyle:
+                            const TextStyle(fontSize: 20, color: Colors.red))),
+                TextSpan(
+                    text: " C°",
+                    style: GoogleFonts.andika(
+                        textStyle:
+                            TextStyle(fontSize: 20, color: Colors.white)))
+              ],
+            ))));
+  }
+
+  Widget volumeText() {
+    return Padding(
+        padding: const EdgeInsetsDirectional.fromSTEB(225, 100, 50, 30),
+        child: Container(
+            width: 300,
+            height: 80,
+            color: Colors.black,
+            alignment: Alignment.bottomRight,
+            child: RichText(
+                text: TextSpan(
+              text: 'Volume: ',
+              style: TextStyle(fontSize: 20, color: Colors.white),
+              children: <TextSpan>[
+                TextSpan(
+                    text: volumeVal.length > 1
+                        ? volumeVal.substring(0, volumeVal.length - 1) +
+                            "." +
+                            volumeVal.substring(
+                                volumeVal.length - 1, volumeVal.length)
+                        : volumeVal.isNotEmpty
+                            ? "0." + volumeVal
+                            : "0.0",
+                    style: GoogleFonts.andika(
+                        textStyle:
+                            const TextStyle(fontSize: 20, color: Colors.blue))),
+                TextSpan(
+                    text: " L",
+                    style: GoogleFonts.andika(
+                        textStyle:
+                            TextStyle(fontSize: 20, color: Colors.white)))
+              ],
+            ))));
   }
 
   Widget textContainer() {
@@ -93,32 +185,18 @@ class _MyHomePageState extends State<MyHomePage> {
             color: Colors.black,
             alignment: Alignment.bottomRight,
             child: Text(
-              volume.length > 1
-                  ? volume.substring(0, volume.length - 1) +
+              quantityEntry.length > 1
+                  ? quantityEntry.substring(0, quantityEntry.length - 1) +
                       "." +
-                      volume.substring(volume.length - 1, volume.length)
-                  : volume.isNotEmpty
-                      ? "0." + volume
+                      quantityEntry.substring(
+                          quantityEntry.length - 1, quantityEntry.length)
+                  : quantityEntry.isNotEmpty
+                      ? "0." + quantityEntry
                       : "0.0",
               style: GoogleFonts.andika(
                   textStyle: TextStyle(fontSize: 40, color: Colors.white)),
             )));
   }
-
-/*
-  Widget test(String idx) {
-    return // Figma Flutter Generator Rectangle1Widget - RECTANGLE
-        // Figma Flutter Generator Group1Widget - GROUP
-        // Figma Flutter Generator Group1Widget - GROUP
-        FloatingActionButton.extended(
-      onPressed: () {
-        // Add your onPressed code here!
-      },
-      label: Text(idx, style: const TextStyle(color: Colors.white)),
-      backgroundColor: Colors.black,
-    );
-  }
-*/
 
   Widget numberButton(String idx) {
     return AnimatedButton(
@@ -201,7 +279,10 @@ class _MyHomePageState extends State<MyHomePage> {
       color: const Color.fromRGBO(49, 49, 49, 2),
       child: SvgPicture.asset("images/vandkandenice-02.svg",
           width: 120, height: 120),
-      onPressed: () {},
+      onPressed: () {
+        type = entryType.volume;
+        setNumber(volumeVal);
+      },
     );
   }
 
@@ -214,7 +295,10 @@ class _MyHomePageState extends State<MyHomePage> {
       color: const Color.fromRGBO(49, 49, 49, 2),
       child: SvgPicture.asset('images/termometernice-03.svg',
           width: 50, height: 50),
-      onPressed: () {},
+      onPressed: () {
+        type = entryType.temperature;
+        setNumber(tempVal);
+      },
     );
   }
 
@@ -231,7 +315,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: SvgPicture.asset("images/vandhane3.svg",
                 width: 42, height: 39)),
         Padding(
-            padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
+            padding: const EdgeInsets.fromLTRB(0, 40, 0, 0),
             child: const Text("Manuel", style: TextStyle(color: Colors.white)))
       ]),
       onPressed: () {},
@@ -251,13 +335,17 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         backgroundColor: const Color.fromARGB(9, 9, 9, 1),
         body: Stack(children: <Widget>[
+          volumeText(),
+          temperatureText(),
           textContainer(),
+          textContainer(),
+          entryIcon(),
           Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(615, 150, 50, 30),
               child: Container(
                 height: 3,
                 width: 390,
-                color: Color.fromRGBO(49, 49, 49, 2),
+                color: const Color.fromRGBO(49, 49, 49, 2),
               )),
           Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(600, 150, 50, 30),

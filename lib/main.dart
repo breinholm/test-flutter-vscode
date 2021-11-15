@@ -99,81 +99,90 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget entryIcon() {
     return type == entryType.temperature
         ? Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(600, 90, 50, 30),
+            padding: const EdgeInsetsDirectional.fromSTEB(840, 92, 50, 30),
             child: SvgPicture.asset('images/termometernice-03.svg',
                 width: 60, height: 60))
         : Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(600, 70, 50, 30),
+            padding: const EdgeInsetsDirectional.fromSTEB(830, 81, 50, 30),
             child: SvgPicture.asset("images/vandkandenice-02.svg",
-                width: 100, height: 100));
+                width: 75, height: 75));
   }
 
   Widget temperatureText() {
-    return Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(230, 70, 50, 30),
-        child: Container(
-            width: 300,
-            height: 80,
-            color: Colors.black,
-            alignment: Alignment.bottomRight,
-            child: RichText(
-                text: TextSpan(
-              text: 'Temperature: ',
-              style: TextStyle(fontSize: 20, color: Colors.white),
-              children: <TextSpan>[
-                TextSpan(
-                    text: tempVal.length > 1
-                        ? tempVal.substring(0, tempVal.length - 1) +
-                            "." +
-                            tempVal.substring(
-                                tempVal.length - 1, tempVal.length)
-                        : tempVal.isNotEmpty
-                            ? "0." + tempVal
-                            : "0.0",
-                    style: GoogleFonts.andika(
-                        textStyle:
-                            const TextStyle(fontSize: 20, color: Colors.red))),
-                TextSpan(
-                    text: " C°",
-                    style: GoogleFonts.andika(
-                        textStyle:
-                            TextStyle(fontSize: 20, color: Colors.white)))
-              ],
-            ))));
+    return Stack(
+      children: [
+        Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(300, 70, 50, 30),
+            child: Container(
+              width: 200,
+              height: 80,
+              color: Colors.black,
+              alignment: Alignment.bottomRight,
+              child: RichText(
+                  text: TextSpan(
+                      text: tempVal.length > 1
+                          ? tempVal.substring(0, tempVal.length - 1) +
+                              "." +
+                              tempVal.substring(
+                                  tempVal.length - 1, tempVal.length)
+                          : tempVal.isNotEmpty
+                              ? "0." + tempVal
+                              : "0.0",
+                      style: GoogleFonts.andika(
+                          textStyle: const TextStyle(
+                              fontSize: 40, color: Colors.white)),
+                      children: <TextSpan>[
+                    TextSpan(
+                        text: " °C",
+                        style: GoogleFonts.andika(
+                            textStyle: const TextStyle(
+                                fontSize: 40, color: Colors.white)))
+                  ])),
+            )),
+        Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(290, 90, 50, 30),
+            child: SvgPicture.asset('images/termometernice-03.svg',
+                width: 60, height: 60)),
+      ],
+    );
   }
 
   Widget volumeText() {
-    return Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(225, 100, 50, 30),
-        child: Container(
-            width: 300,
-            height: 80,
-            color: Colors.black,
-            alignment: Alignment.bottomRight,
-            child: RichText(
-                text: TextSpan(
-              text: 'Volume: ',
-              style: TextStyle(fontSize: 20, color: Colors.white),
-              children: <TextSpan>[
-                TextSpan(
-                    text: volumeVal.length > 1
-                        ? volumeVal.substring(0, volumeVal.length - 1) +
-                            "." +
-                            volumeVal.substring(
-                                volumeVal.length - 1, volumeVal.length)
-                        : volumeVal.isNotEmpty
-                            ? "0." + volumeVal
-                            : "0.0",
-                    style: GoogleFonts.andika(
-                        textStyle:
-                            const TextStyle(fontSize: 20, color: Colors.blue))),
-                TextSpan(
-                    text: " L",
-                    style: GoogleFonts.andika(
-                        textStyle:
-                            TextStyle(fontSize: 20, color: Colors.white)))
-              ],
-            ))));
+    return Stack(
+      children: [
+        Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(50, 70, 50, 30),
+            child: Container(
+                width: 200,
+                height: 80,
+                color: Colors.black,
+                alignment: Alignment.bottomRight,
+                child: RichText(
+                    text: TextSpan(
+                        text: volumeVal.length > 1
+                            ? volumeVal.substring(0, volumeVal.length - 1) +
+                                "." +
+                                volumeVal.substring(
+                                    volumeVal.length - 1, volumeVal.length)
+                            : volumeVal.isNotEmpty
+                                ? "0." + volumeVal
+                                : "0.0",
+                        style: GoogleFonts.andika(
+                            textStyle: const TextStyle(
+                                fontSize: 40, color: Colors.white)),
+                        children: <TextSpan>[
+                      TextSpan(
+                          text: " Lbs",
+                          style: GoogleFonts.andika(
+                              textStyle: const TextStyle(
+                                  fontSize: 40, color: Colors.white)))
+                    ])))),
+        Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(10, 80, 50, 30),
+            child: SvgPicture.asset('images/vandkandenice-02.svg',
+                width: 75, height: 75)),
+      ],
+    );
   }
 
   Widget textContainer() {
@@ -194,7 +203,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       ? "0." + quantityEntry
                       : "0.0",
               style: GoogleFonts.andika(
-                  textStyle: TextStyle(fontSize: 40, color: Colors.white)),
+                  textStyle:
+                      const TextStyle(fontSize: 40, color: Colors.white)),
             )));
   }
 
@@ -311,12 +321,9 @@ class _MyHomePageState extends State<MyHomePage> {
       color: const Color.fromRGBO(49, 49, 49, 2),
       child: Stack(children: <Widget>[
         Padding(
-            padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+            padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
             child: SvgPicture.asset("images/vandhane3.svg",
                 width: 42, height: 39)),
-        Padding(
-            padding: const EdgeInsets.fromLTRB(0, 40, 0, 0),
-            child: const Text("Manuel", style: TextStyle(color: Colors.white)))
       ]),
       onPressed: () {},
     );
@@ -335,8 +342,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         backgroundColor: const Color.fromARGB(9, 9, 9, 1),
         body: Stack(children: <Widget>[
-          volumeText(),
           temperatureText(),
+          volumeText(),
           textContainer(),
           textContainer(),
           entryIcon(),

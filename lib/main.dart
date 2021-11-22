@@ -3,6 +3,7 @@ import 'package:animated_button/animated_button.dart';
 import 'package:flutter_svg/parser.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import "circle_loader.dart";
 
 void main() {
   runApp(const MyApp());
@@ -33,6 +34,44 @@ class MyApp extends StatelessWidget {
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
+}
+
+Widget Bubble() {
+  return Padding(
+    padding: const EdgeInsetsDirectional.fromSTEB(300, 400, 50, 30),
+    child: AutomatedAnimator(
+      animateToggle: true,
+      doRepeatAnimation: true,
+      duration: Duration(seconds: 10),
+      buildWidget: (double animationPosition) {
+        return WaveLoadingBubble(
+          foregroundWaveColor: Color(0xFF6AA0E1),
+          backgroundWaveColor: Color(0xFF4D90DF),
+          loadingWheelColor: Color(0xFF77AAEE),
+          period: animationPosition,
+          backgroundWaveVerticalOffset: 90 - animationPosition * 200,
+          foregroundWaveVerticalOffset: 90 +
+              reversingSplitParameters(
+                position: animationPosition,
+                numberBreaks: 6,
+                parameterBase: 8.0,
+                parameterVariation: 8.0,
+                reversalPoint: 0.75,
+              ) -
+              animationPosition * 200,
+          waveHeight: reversingSplitParameters(
+            position: animationPosition,
+            numberBreaks: 5,
+            parameterBase: 12,
+            parameterVariation: 8,
+            reversalPoint: 0.75,
+          ),
+          key: const Key("lol"),
+        );
+      },
+      key: const Key("lol2"),
+    ),
+  );
 }
 
 class MyHomePage extends StatefulWidget {
@@ -252,7 +291,9 @@ class _MyHomePageState extends State<MyHomePage> {
       color: const Color.fromRGBO(49, 49, 49, 2),
       child: Center(
           child: const Icon(Icons.arrow_right, size: 80, color: Colors.green)),
-      onPressed: () {},
+      onPressed: () {
+        Bubble();
+      },
     );
   }
 
@@ -342,6 +383,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         backgroundColor: const Color.fromARGB(9, 9, 9, 1),
         body: Stack(children: <Widget>[
+          Bubble(),
           temperatureText(),
           volumeText(),
           textContainer(),
